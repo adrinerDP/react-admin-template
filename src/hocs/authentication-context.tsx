@@ -59,6 +59,8 @@ export const AuthenticationContextProvider: React.FC<PropsWithChildren> = ({
   const signOut = async () => {
     sessionStorage.remove('auth.access_token');
     sessionStorage.remove('auth.refresh_token');
+
+    setIsLoggedIn('invalid');
   };
 
   return (

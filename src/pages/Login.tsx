@@ -55,12 +55,7 @@ const Login: React.FC = () => {
       signIn({ username: data.username, password: data.password }),
     );
 
-    switch (result.type) {
-      case 'success':
-        return console.log(result.value);
-      case 'failure':
-        return handleHTTPError(result.error);
-    }
+    if (result.type === 'failure') return handleHTTPError(result.error);
   };
 
   useEffect(() => {

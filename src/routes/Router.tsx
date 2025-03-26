@@ -4,20 +4,7 @@ import AuthenticationContextProvider from '@/hocs/authentication-context.tsx';
 import AccountContextProvider from '@/hocs/account-context.tsx';
 import { PRIVATE_ROUTES } from '@/routes/private.routes.ts';
 import { PUBLIC_ROUTES } from '@/routes/public.routes.tsx';
-
-const PrivateContext: React.FC = () => (
-  <AuthenticationContextProvider>
-    <AccountContextProvider>
-      <Outlet />
-    </AccountContextProvider>
-  </AuthenticationContextProvider>
-);
-
-const PublicContext: React.FC = () => (
-  <AuthenticationContextProvider>
-    <Outlet />
-  </AuthenticationContextProvider>
-);
+import MainLayout from '@/layouts/MainLayout.tsx';
 
 const Router: React.FC = () => (
   <Routes>
@@ -33,6 +20,22 @@ const Router: React.FC = () => (
       ))}
     </Route>
   </Routes>
+);
+
+const PrivateContext: React.FC = () => (
+  <AuthenticationContextProvider>
+    <AccountContextProvider>
+      <MainLayout>
+        <Outlet />
+      </MainLayout>
+    </AccountContextProvider>
+  </AuthenticationContextProvider>
+);
+
+const PublicContext: React.FC = () => (
+  <AuthenticationContextProvider>
+    <Outlet />
+  </AuthenticationContextProvider>
 );
 
 export default Router;

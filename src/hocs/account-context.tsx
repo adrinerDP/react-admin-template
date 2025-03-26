@@ -6,8 +6,14 @@ import React, {
 } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '@/hocs/authentication-context.tsx';
+import {
+  useProfileQuery,
+  UserProfileResponse,
+} from '@/apis/user/useProfileQuery.tsx';
 
-type AccountContextProps = {};
+type AccountContextProps = {
+  profile?: UserProfileResponse;
+};
 
 export const AccountContext = createContext<AccountContextProps>(
   {} as AccountContextProps,
@@ -21,6 +27,8 @@ export const AccountContextProvider: React.FC<PropsWithChildren> = ({
 
   const { isLoggedIn } = useAuth();
 
+  const { data: profile } = useProfileQuery();
+
   useEffect(() => {
     if (isLoggedIn === 'invalid') {
       navigate(`/auth/login?redirect=${location.pathname}${location.search}`);
@@ -28,7 +36,9 @@ export const AccountContextProvider: React.FC<PropsWithChildren> = ({
   }, [isLoggedIn]);
 
   return (
-    <AccountContext.Provider value={{}}>{children}</AccountContext.Provider>
+    <AccountContext.Provider value={{ profile }}>
+      {children}
+    </AccountContext.Provider>
   );
 };
 
