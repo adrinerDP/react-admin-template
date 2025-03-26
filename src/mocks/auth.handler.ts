@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { withBaseURL } from '@/mocks/utils.ts';
 import { LoginResponse } from '@/apis/auth/useLoginMutation.tsx';
-import { addMinutes, addWeeks, isAfter, parseISO } from 'date-fns';
+import { addMinutes, addWeeks, isAfter } from 'date-fns';
 import { z } from 'zod';
 
 const loginRequest = z
@@ -28,7 +28,7 @@ export const authHandler = [
       return HttpResponse.json({ message: 'UNAUTHORIZED' }, { status: 401 });
     }
 
-    if (isAfter(now, parseISO(tokenValue))) {
+    if (isAfter(now, new Date(parseInt(tokenValue)))) {
       return HttpResponse.json({ message: 'TOKEN_EXPIRED' }, { status: 401 });
     }
 
@@ -40,7 +40,7 @@ const generateTokens = () => {
   const now = new Date();
 
   return {
-    accessToken: `access:${addMinutes(now, 1).toISOString()}`,
-    refreshToken: `refresh:${addWeeks(now, 2).toISOString()}`,
+    accessToken: `access:${addMinutes(now, 1).getTime()}`,
+    refreshToken: `refresh:${addWeeks(now, 2).getTime()}`,
   };
 };

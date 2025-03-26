@@ -1,5 +1,5 @@
 import { HttpResponse } from 'msw';
-import { isAfter, parseISO } from 'date-fns';
+import { isAfter } from 'date-fns';
 
 export const withBaseURL = (path: string) => {
   return `${import.meta.env.VITE_API_BASE_URL}${path}`;
@@ -20,7 +20,7 @@ export const guardJWT = (req: Request) => {
     return HttpResponse.json({ message: 'UNAUTHORIZED' }, { status: 401 });
   }
 
-  if (!isAfter(now, parseISO(tokenValue))) {
+  if (isAfter(now, new Date(parseInt(tokenValue)))) {
     return HttpResponse.json({ message: 'TOKEN_EXPIRED' }, { status: 401 });
   }
 
