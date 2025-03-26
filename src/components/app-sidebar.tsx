@@ -29,10 +29,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu.tsx';
 import { useAuth } from '@/hocs/authentication-context.tsx';
+import { Link, useLocation } from 'react-router';
 
 export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
   const { signOut } = useAuth();
   const { profile } = useAccount();
+  const location = useLocation();
 
   return (
     <Sidebar {...props}>
@@ -45,32 +47,44 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {SIDEBAR_CONFIG.navMain.map((item) => (
-              <Collapsible key={item.title} className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>
-                      {item.title}
-                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {item.items.map((item) => (
-                        <SidebarMenuSubItem key={item.title}>
-                          <SidebarMenuSubButton
-                            asChild
-                            isActive={item.isActive}
-                          >
-                            <a href={item.url}>{item.title}</a>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
-            ))}
+            {SIDEBAR_CONFIG.map((item) =>
+              item.items.length > 0 ? (
+                <Collapsible key={item.title} className="group/collapsible">
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton>
+                        {item.title}
+                        <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.items.map((item) => (
+                          <SidebarMenuSubItem key={item.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={location.pathname === item.url}
+                            >
+                              <Link to={item.url}>{item.title}</Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              ) : (
+                <SidebarMenuButton
+                  key={item.title}
+                  isActive={item.url.startsWith(location.pathname)}
+                  asChild
+                >
+                  <Link to={item.url}>
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              ),
+            )}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

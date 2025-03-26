@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -15,7 +14,7 @@ const Home: React.FC = () => {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="/">홈</BreadcrumbLink>
+              <BreadcrumbPage>홈</BreadcrumbPage>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>

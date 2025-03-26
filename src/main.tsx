@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router';
 import { Toaster } from '@/components/ui/toaster.tsx';
 
 const enableMSW = async () => {
-  if (import.meta.env.MODE !== 'development') return;
+  // if (import.meta.env.MODE !== 'development') return;
   const { worker } = await import('./mocks/browser');
   return worker.start();
 };
