@@ -6,13 +6,13 @@ import React, {
   useState,
 } from 'react';
 import { ValidationStatus } from '@/types/common.types.ts';
-import { useProfileQuery } from '@/apis/user/useProfileQuery.tsx';
+import { useProfileQuery } from '@/apis/user/useProfileQuery.ts';
 import { sessionStorage } from '@/stores/persisted/session-storage.ts';
 import {
   LoginRequest,
   LoginResponse,
   useLoginMutation,
-} from '@/apis/auth/useLoginMutation.tsx';
+} from '@/apis/auth/useLoginMutation.ts';
 
 type AuthenticationContextProps = {
   isLoggedIn: ValidationStatus;

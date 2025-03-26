@@ -9,7 +9,7 @@ import { useAuth } from '@/hocs/authentication-context.tsx';
 import {
   useProfileQuery,
   UserProfileResponse,
-} from '@/apis/user/useProfileQuery.tsx';
+} from '@/apis/user/useProfileQuery.ts';
 
 type AccountContextProps = {
   profile?: UserProfileResponse;

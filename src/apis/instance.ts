@@ -1,5 +1,5 @@
 import ky from 'ky';
-import { LoginResponse } from '@/apis/auth/useLoginMutation.tsx';
+import { LoginResponse } from '@/apis/auth/useLoginMutation.ts';
 import { sessionStorage } from '@/stores/persisted/session-storage.ts';
 
 export const kyInstance = ky.create({

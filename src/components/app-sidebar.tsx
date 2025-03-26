@@ -49,7 +49,12 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
           <SidebarMenu>
             {SIDEBAR_CONFIG.map((item) =>
               item.items.length > 0 ? (
-                <Collapsible key={item.title} className="group/collapsible">
+                <Collapsible
+                  key={item.title}
+                  defaultOpen={item.items.some((item) =>
+                    item.url.startsWith(location.pathname),
+                  )}
+                >
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton>

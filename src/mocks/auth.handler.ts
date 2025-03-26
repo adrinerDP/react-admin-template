@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { withBaseURL } from '@/mocks/utils.ts';
-import { LoginResponse } from '@/apis/auth/useLoginMutation.tsx';
+import { LoginResponse } from '@/apis/auth/useLoginMutation.ts';
 import { addMinutes, addWeeks, isAfter } from 'date-fns';
 import { z } from 'zod';
 
