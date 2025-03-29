@@ -15,7 +15,7 @@ interface PaginationProps {
   onChangePage: (page: number) => void;
 }
 
-const TablePagination = ({ currentPage, totalPage, onChangePage }: PaginationProps) => {
+const DataTablePagination = ({ currentPage, totalPage, onChangePage }: PaginationProps) => {
   const maxVisiblePages = 5;
 
   const startPage = Math.max(2, currentPage - Math.floor(maxVisiblePages / 2));
@@ -127,4 +127,4 @@ const TablePagination = ({ currentPage, totalPage, onChangePage }: PaginationPro
   );
 };
 
-export default TablePagination;
+export default DataTablePagination;

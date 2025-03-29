@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet, Route, Routes } from 'react-router';
-import AuthenticationContextProvider from '@/hocs/authentication-context.tsx';
-import AccountContextProvider from '@/hocs/account-context.tsx';
+import AuthenticationContextProvider from '@/contexts/authentication-context.tsx';
+import AccountContextProvider from '@/contexts/account-context.tsx';
 import { PRIVATE_ROUTES } from '@/routes/private.routes.ts';
 import { PUBLIC_ROUTES } from '@/routes/public.routes.tsx';
-import MainLayout from '@/layouts/MainLayout.tsx';
+import MainLayout from '@/components/layouts/main-layout.tsx';
 
 const Router: React.FC = () => (
   <Routes>

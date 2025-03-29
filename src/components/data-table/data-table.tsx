@@ -3,9 +3,9 @@ import { RowData } from '@tanstack/table-core';
 import React, { useEffect, useRef, useState } from 'react';
 import { UseTableResult } from '@/hooks/use-table.tsx';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table.tsx';
-import TablePagination from '@/components/data-table/table-pagination.tsx';
-import { HeaderRow } from '@/components/data-table/table-header-row.tsx';
-import { BodyRow } from '@/components/data-table/table-body-row.tsx';
+import DataTablePagination from '@/components/data-table/data-table-pagination.tsx';
+import { HeaderRow } from '@/components/data-table/data-table-header-row.tsx';
+import { BodyRow } from '@/components/data-table/data-table-body-row.tsx';
 import { cn } from '@/lib/utils.ts';
 import { Skeleton } from '@/components/ui/skeleton.tsx';
 
@@ -80,7 +80,7 @@ function DataTable<T extends RowData>({ config, data, rowsPerPage = 10, onClickR
       </div>
 
       {pagination && onPaginationChange && (
-        <TablePagination
+        <DataTablePagination
           currentPage={pagination.pageIndex}
           totalPage={pagination.pageSize}
           onChangePage={(pageIndex) => onPaginationChange({ ...pagination, pageIndex })}

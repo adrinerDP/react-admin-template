@@ -50,7 +50,13 @@ export function useTable<T>({
         />
       ),
       cell: ({ row }) => (
-        <div className="size-4">
+        <div
+          className="size-4"
+          onClick={(e) => {
+            row.toggleSelected(row.getIsSelected());
+            e.stopPropagation();
+          }}
+        >
           <Checkbox checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} />
         </div>
       ),

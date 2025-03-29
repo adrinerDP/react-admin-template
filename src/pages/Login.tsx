@@ -1,26 +1,13 @@
 import React, { useEffect } from 'react';
 import { z } from 'zod';
-import { useAuth } from '@/hocs/authentication-context.tsx';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card.tsx';
+import { useAuth } from '@/contexts/authentication-context.tsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { cn, runResult } from '@/lib/utils.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form.tsx';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form.tsx';
 import { useNavigate, useParams } from 'react-router';
 import { useError } from '@/hooks/use-error.ts';
 
@@ -51,9 +38,7 @@ const Login: React.FC = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof loginForm>) => {
-    const result = await runResult(
-      signIn({ username: data.username, password: data.password }),
-    );
+    const result = await runResult(signIn({ username: data.username, password: data.password }));
 
     if (result.type === 'failure') return handleHTTPError(result.error);
   };
@@ -72,16 +57,11 @@ const Login: React.FC = () => {
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl">로그인</CardTitle>
-              <CardDescription>
-                템플릿 어드민 접근을 위해 로그인 해주세요
-              </CardDescription>
+              <CardDescription>템플릿 어드민 접근을 위해 로그인 해주세요</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-8"
-                >
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <div className="flex flex-col gap-6">
                     <div className="grid gap-2">
                       <FormField
@@ -91,11 +71,7 @@ const Login: React.FC = () => {
                           <FormItem>
                             <FormLabel>아이디</FormLabel>
                             <FormControl>
-                              <Input
-                                type="text"
-                                placeholder="아이디를 입력하세요"
-                                {...field}
-                              />
+                              <Input type="text" placeholder="아이디를 입력하세요" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -110,11 +86,7 @@ const Login: React.FC = () => {
                           <FormItem>
                             <FormLabel>비밀번호</FormLabel>
                             <FormControl>
-                              <Input
-                                type="password"
-                                placeholder="비밀번호를 입력하세요"
-                                {...field}
-                              />
+                              <Input type="password" placeholder="비밀번호를 입력하세요" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

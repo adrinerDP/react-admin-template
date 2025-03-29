@@ -11,24 +11,15 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from '@/components/ui/sidebar';
+} from '@/components/ui/sidebar.tsx';
 import { ComponentProps } from 'react';
 import { SIDEBAR_CONFIG } from '@/configs/sidebar.config.ts';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible.tsx';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible.tsx';
 import { ChevronDown, ChevronUp, User2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator.tsx';
-import { useAccount } from '@/hocs/account-context.tsx';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu.tsx';
-import { useAuth } from '@/hocs/authentication-context.tsx';
+import { useAccount } from '@/contexts/account-context.tsx';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu.tsx';
+import { useAuth } from '@/contexts/authentication-context.tsx';
 import { Link, useLocation } from 'react-router';
 
 export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
@@ -49,12 +40,7 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
           <SidebarMenu>
             {SIDEBAR_CONFIG.map((item) =>
               item.items.length > 0 ? (
-                <Collapsible
-                  key={item.title}
-                  defaultOpen={item.items.some((item) =>
-                    item.url.startsWith(location.pathname),
-                  )}
-                >
+                <Collapsible key={item.title} defaultOpen={item.items.some((item) => item.url.startsWith(location.pathname))}>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton>
@@ -66,10 +52,7 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
                       <SidebarMenuSub>
                         {item.items.map((item) => (
                           <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={location.pathname === item.url}
-                            >
+                            <SidebarMenuSubButton asChild isActive={location.pathname === item.url}>
                               <Link to={item.url}>{item.title}</Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -79,11 +62,7 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
                   </SidebarMenuItem>
                 </Collapsible>
               ) : (
-                <SidebarMenuButton
-                  key={item.title}
-                  isActive={item.url.startsWith(location.pathname)}
-                  asChild
-                >
+                <SidebarMenuButton key={item.title} isActive={item.url.startsWith(location.pathname)} asChild>
                   <Link to={item.url}>
                     <span>{item.title}</span>
                   </Link>
@@ -104,10 +83,7 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
+              <DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
                 <DropdownMenuItem>
                   <span>{profile?.email}</span>
                 </DropdownMenuItem>
