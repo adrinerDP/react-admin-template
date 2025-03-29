@@ -1,18 +1,8 @@
-import React, {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { ValidationStatus } from '@/types/common.types.ts';
 import { useProfileQuery } from '@/apis/user/useProfileQuery.ts';
 import { sessionStorage } from '@/stores/persisted/session-storage.ts';
-import {
-  LoginRequest,
-  LoginResponse,
-  useLoginMutation,
-} from '@/apis/auth/useLoginMutation.ts';
+import { LoginRequest, LoginResponse, useLoginMutation } from '@/apis/auth/useLoginMutation.ts';
 
 type AuthenticationContextProps = {
   isLoggedIn: ValidationStatus;
@@ -20,13 +10,9 @@ type AuthenticationContextProps = {
   signOut: () => Promise<void>;
 };
 
-export const AuthenticationContext = createContext<AuthenticationContextProps>(
-  {} as AuthenticationContextProps,
-);
+export const AuthenticationContext = createContext<AuthenticationContextProps>({} as AuthenticationContextProps);
 
-export const AuthenticationContextProvider: React.FC<PropsWithChildren> = ({
-  children,
-}) => {
+export const AuthenticationContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<ValidationStatus>('pending');
 
   const { refetch: getProfile } = useProfileQuery();

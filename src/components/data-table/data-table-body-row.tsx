@@ -14,7 +14,6 @@ export function BodyRow<T>({ row, onClickRow, isTruncate }: Props<T>) {
   return (
     <TableRow
       key={row.id}
-      data-state={row.getIsSelected() && 'selected'}
       className={clsx(onClickRow && 'cursor-pointer')}
       onClick={(e) => {
         e.stopPropagation();
@@ -28,7 +27,11 @@ export function BodyRow<T>({ row, onClickRow, isTruncate }: Props<T>) {
         return (
           <TableCell
             key={cell.id}
-            className={clsx(isTruncate ? 'truncate' : 'whitespace-break-spaces', isDropdown && 'px-4', isMonospaced && 'font-mono')}
+            className={clsx(
+              isTruncate ? 'truncate' : 'whitespace-break-spaces',
+              isDropdown && 'px-4',
+              isMonospaced && 'font-mono',
+            )}
           >
             {flexRender(cell.column.columnDef.cell, cell.getContext())}
           </TableCell>

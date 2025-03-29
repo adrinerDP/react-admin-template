@@ -19,7 +19,15 @@ type Props<T> = {
   isLoading?: boolean;
 };
 
-function DataTable<T extends RowData>({ config, data, rowsPerPage = 10, onClickRow, emptyMessage, isLoading, isTruncate = false }: Props<T>) {
+function DataTable<T extends RowData>({
+  config,
+  data,
+  rowsPerPage = 10,
+  onClickRow,
+  emptyMessage,
+  isLoading,
+  isTruncate = false,
+}: Props<T>) {
   const { pagination, onPaginationChange, tableConfig, table } = config;
   const [rowData, setRowData] = useState<T[]>(data);
   const prevDataRef = useRef<T[]>(data);
@@ -51,7 +59,10 @@ function DataTable<T extends RowData>({ config, data, rowsPerPage = 10, onClickR
           <TableBody>
             {!isLoading && emptyMessage && rowData.length === 0 && (
               <TableRow>
-                <TableCell colSpan={table.current.getAllColumns().length} className="py-[18px] text-center text-muted-foreground">
+                <TableCell
+                  colSpan={table.current.getAllColumns().length}
+                  className="py-[18px] text-center text-muted-foreground"
+                >
                   {emptyMessage}
                 </TableCell>
               </TableRow>

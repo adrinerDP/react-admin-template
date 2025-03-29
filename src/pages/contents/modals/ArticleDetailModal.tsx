@@ -10,7 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog.tsx';
-import { DisplayTable, DisplayTableBody, DisplayTableHead, DisplayTableRow } from '@/components/display-table/display-table.tsx';
+import {
+  DisplayTable,
+  DisplayTableBody,
+  DisplayTableHead,
+  DisplayTableRow,
+} from '@/components/display-table/display-table.tsx';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button.tsx';
 import { Pencil, Trash } from 'lucide-react';

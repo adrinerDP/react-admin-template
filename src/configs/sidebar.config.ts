@@ -11,8 +11,16 @@ export const SIDEBAR_CONFIG: SideBarItem[] = [
     items: [],
   },
   {
-    title: '콘텐츠 관리',
+    title: '콘텐츠',
     url: '/contents',
     items: [{ title: '게시글', url: '/contents/articles' }],
+  },
+  {
+    title: '사용자 (jsonplaceholder)',
+    url: '/members',
+    items: [
+      { title: '고객', url: '/members/customers' },
+      { title: '관리자', url: '/members/admins' },
+    ],
   },
 ];

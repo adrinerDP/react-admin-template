@@ -5,9 +5,7 @@ import { HTTPErrorMessageCode } from '@/types/http-error.types.ts';
 
 type ErrorMessage = { title: string; description?: string };
 
-type ErrorMessages = Partial<
-  Record<HTTPErrorMessageCode, { title: string; description?: string }>
->;
+type ErrorMessages = Partial<Record<HTTPErrorMessageCode, { title: string; description?: string }>>;
 
 type HandleErrorOptions = {
   defaultMessage?: { title: string; description?: string };
@@ -35,9 +33,7 @@ export const useError = (options?: HandleErrorOptions) => {
         }>();
 
         const payload: ErrorMessage =
-          options?.messages?.[errorData.message] ||
-          options?.defaultMessage ||
-          UNKNOWN_ERROR;
+          options?.messages?.[errorData.message] || options?.defaultMessage || UNKNOWN_ERROR;
 
         toast({ variant: 'destructive', ...payload });
       } else {

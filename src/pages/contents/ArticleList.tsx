@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb.tsx';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb.tsx';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,10 +22,17 @@ import { PageableQuery } from '@/types/api-query.types.ts';
 import { useTable } from '@/hooks/use-table.tsx';
 import DataTable from '@/components/data-table/data-table.tsx';
 import { format, parseISO } from 'date-fns';
-import { Pencil, Plus, Search, Trash } from 'lucide-react';
+import { Plus, Search, Trash } from 'lucide-react';
 import ArticleDetailModal from '@/pages/contents/modals/ArticleDetailModal.tsx';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.tsx';
-import { DisplayTable, DisplayTableBody, DisplayTableHead, DisplayTableRow } from '@/components/display-table/display-table.tsx';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog.tsx';
 
 const formSchema = z.object({
   title: z.string().optional(),
@@ -41,10 +55,8 @@ const defaultValues: FormData = {
 const ArticleList: React.FC = () => {
   const [presentedItem, setPresentedItem] = useState<ArticleListItem | null>(null);
 
-  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 1, pageSize: 10 });
-  const [rowSelection, setRowSelection] = useState({});
-
   const [queryData, setQueryData] = useState<FormData>(defaultValues);
+  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 1, pageSize: 10 });
 
   const {
     data: articleList,
@@ -58,10 +70,8 @@ const ArticleList: React.FC = () => {
     limit: queryData.limit,
   });
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues,
-  });
+  const [rowSelection, setRowSelection] = useState({});
+  const form = useForm<FormData>({ resolver: zodResolver(formSchema), defaultValues });
 
   const onSubmit = (data: FormData) => setQueryData(data);
   const onReset = () => form.reset(defaultValues);
@@ -157,7 +167,11 @@ const ArticleList: React.FC = () => {
                             <FormItem>
                               <FormLabel>게시글 작성일</FormLabel>
                               <FormControl>
-                                <DatePickerWithRange placeholder="게시글 작성일 선택" dateFrom={dateFromField} dateTo={dateToField} />
+                                <DatePickerWithRange
+                                  placeholder="게시글 작성일 선택"
+                                  dateFrom={dateFromField}
+                                  dateTo={dateToField}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>

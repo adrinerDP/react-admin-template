@@ -1,12 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ColumnDef, ColumnHelper, createColumnHelper, getPaginationRowModel, PaginationState, Table, TableOptions } from '@tanstack/react-table';
+import {
+  ColumnDef,
+  ColumnHelper,
+  createColumnHelper,
+  getPaginationRowModel,
+  PaginationState,
+  Table,
+  TableOptions,
+} from '@tanstack/react-table';
 import { Dispatch, RefObject, SetStateAction, useMemo, useRef } from 'react';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
 
 type PartialTableConfig<T> = Pick<
   TableOptions<T>,
-  'columns' | 'getRowId' | 'onPaginationChange' | 'state' | 'manualPagination' | 'enableRowSelection' | 'getPaginationRowModel'
+  | 'columns'
+  | 'getRowId'
+  | 'onPaginationChange'
+  | 'state'
+  | 'manualPagination'
+  | 'enableRowSelection'
+  | 'getPaginationRowModel'
 >;
 
 type TableFeatures = 'select';

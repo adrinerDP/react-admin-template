@@ -16,39 +16,23 @@ export class BaseEnum<IUnion extends string, IMeta = undefined> {
     BaseEnum.instancesMap.get(constructor)?.push(this);
   }
 
-  static allCases<T extends BaseEnum<string, any>>(
-    this: new (...args: any[]) => T,
-  ): T[] {
+  static allCases<T extends BaseEnum<string, any>>(this: new (...args: any[]) => T): T[] {
     return (BaseEnum.instancesMap.get(this) as T[]) || [];
   }
 
-  static fromCode<T extends BaseEnum<string, any>>(
-    this: new (...args: any[]) => T,
-    code: string,
-  ): T | undefined {
-    return BaseEnum.instancesMap
-      .get(this)
-      ?.find((instance) => instance.code === code) as T | undefined;
+  static fromCode<T extends BaseEnum<string, any>>(this: new (...args: any[]) => T, code: string): T | undefined {
+    return BaseEnum.instancesMap.get(this)?.find((instance) => instance.code === code) as T | undefined;
   }
 
-  static fromLabel<T extends BaseEnum<string, any>>(
-    this: new (...args: any[]) => T,
-    label: string,
-  ): T | undefined {
-    return BaseEnum.instancesMap
-      .get(this)
-      ?.find((instance) => instance.label === label) as T | undefined;
+  static fromLabel<T extends BaseEnum<string, any>>(this: new (...args: any[]) => T, label: string): T | undefined {
+    return BaseEnum.instancesMap.get(this)?.find((instance) => instance.label === label) as T | undefined;
   }
 
-  static codes<T extends BaseEnum<string, any>>(
-    this: new (...args: any[]) => T,
-  ): string[] {
+  static codes<T extends BaseEnum<string, any>>(this: new (...args: any[]) => T): string[] {
     return (BaseEnum.instancesMap.get(this) as T[]).map((v) => v.code);
   }
 
-  static labels<T extends BaseEnum<string, any>>(
-    this: new (...args: any[]) => T,
-  ): string[] {
+  static labels<T extends BaseEnum<string, any>>(this: new (...args: any[]) => T): string[] {
     return (BaseEnum.instancesMap.get(this) as T[]).map((v) => v.label);
   }
 }

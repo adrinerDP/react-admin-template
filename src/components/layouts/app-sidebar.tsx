@@ -18,7 +18,12 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { ChevronDown, ChevronUp, User2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator.tsx';
 import { useAccount } from '@/contexts/account-context.tsx';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu.tsx';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu.tsx';
 import { useAuth } from '@/contexts/authentication-context.tsx';
 import { Link, useLocation } from 'react-router';
 
@@ -40,7 +45,10 @@ export const AppSidebar: React.FC<ComponentProps<typeof Sidebar>> = (props) => {
           <SidebarMenu>
             {SIDEBAR_CONFIG.map((item) =>
               item.items.length > 0 ? (
-                <Collapsible key={item.title} defaultOpen={item.items.some((item) => item.url.startsWith(location.pathname))}>
+                <Collapsible
+                  key={item.title}
+                  defaultOpen={item.items.some((item) => item.url.startsWith(location.pathname))}
+                >
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton>

@@ -35,7 +35,10 @@ export const DisplayTableHead: React.FC<PropsWithChildren<{ align?: HorizontalAl
   </div>
 );
 
-export const DisplayTableBody: React.FC<PropsWithChildren<{ align?: HorizontalAlignment }>> = ({ children, align = 'left' }) => (
+export const DisplayTableBody: React.FC<PropsWithChildren<{ align?: HorizontalAlignment }>> = ({
+  children,
+  align = 'left',
+}) => (
   <div
     className={cn(
       'flex flex-col flex-1 justify-center py-3 px-4',

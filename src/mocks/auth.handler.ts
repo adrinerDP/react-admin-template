@@ -4,9 +4,7 @@ import { LoginResponse } from '@/apis/auth/useLoginMutation.ts';
 import { addMinutes, addWeeks, isAfter } from 'date-fns';
 import { z } from 'zod';
 
-const loginRequest = z
-  .object({ username: z.string(), password: z.string() })
-  .required();
+const loginRequest = z.object({ username: z.string(), password: z.string() }).required();
 
 export const authHandler = [
   http.post(withBaseURL('/auth/login'), async ({ request }) => {

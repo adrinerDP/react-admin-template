@@ -10,5 +10,11 @@ export const PRIVATE_ROUTES: RouteItem[] = [
     Page: lazy(() => import('@/pages/contents/ArticleList.tsx')),
   },
 
+  // 사용자
+  {
+    path: '/members/customers',
+    Page: lazy(() => import('@/pages/members/CustomerList.tsx')),
+  },
+
   { path: '*', Page: lazy(() => import('@/pages/Home.tsx')) },
 ];
